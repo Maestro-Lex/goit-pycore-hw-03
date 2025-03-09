@@ -17,10 +17,8 @@ def get_upcoming_birthdays(users: list) -> list:
         # Визначаємо різницю між днем народження та поточним днем
         days_to_user_birthday_this_year = user_birthday_this_year.toordinal() - today.toordinal()
         # Перевіряємо, чи день народження припадає на вихідний
-        if user_birthday_this_year.weekday() == 5:
-            days_to_user_congrats = days_to_user_birthday_this_year + 2
-        elif user_birthday_this_year.weekday() == 6:
-            days_to_user_congrats = days_to_user_birthday_this_year + 1
+        if user_birthday_this_year.weekday() > 4:
+            days_to_user_congrats = days_to_user_birthday_this_year + (7 - user_birthday_this_year.weekday())
         else:
             days_to_user_congrats = days_to_user_birthday_this_year
         # Відбираємо тих, чий день народження відбувається протягом наступного тижня
