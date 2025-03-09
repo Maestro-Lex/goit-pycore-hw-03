@@ -21,6 +21,8 @@ def get_upcoming_birthdays(users: list) -> list:
             days_to_user_congrats = days_to_user_birthday_this_year + 2
         elif user_birthday_this_year.weekday() == 6:
             days_to_user_congrats = days_to_user_birthday_this_year + 1
+        else:
+            days_to_user_congrats = days_to_user_birthday_this_year
         # Відбираємо тих, чий день народження відбувається протягом наступного тижня
         if days_to_user_birthday_this_year < 7:
             user_congrats_day = user_birthday_this_year.replace(day = today.day + days_to_user_congrats)
@@ -36,8 +38,8 @@ def get_upcoming_birthdays(users: list) -> list:
 users = [
     {"name": "John Doe", "birthday": "1985.01.23"},
     {"name": "Jane Smith", "birthday": "1990.01.27"},
-    {"name": "Alexander", "birthday": "1985.03.09"},
-    {"name": "Artur", "birthday": "1990.03.10"},
+    {"name": "Alexander", "birthday": "1985.03.10"},
+    {"name": "Artur", "birthday": "1990.03.09"},
     {"name": "Igor", "birthday": "1990.03.15"},
 ]
 print(get_upcoming_birthdays(users))
