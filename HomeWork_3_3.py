@@ -11,7 +11,9 @@ def normalize_phone(phone_numbers: list) -> list:
     # Створюємо патерн регулярного виразу
     pattern = r"[+0-9]"
     for phone in phone_numbers:
+        # Значення відповідно до патерну заносимо у список ['+', '3', '8', ...]
         match = re.findall(pattern, phone)
+        # Об'єднуємо елементи списку в єдиний рядок
         phone = ''.join(match)
         # Додаємо код країни (або умовними операторами або через зріз, що коротше та вірніше)
         match phone[0]:
