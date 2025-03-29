@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime,timedelta
 
 def get_upcoming_birthdays(users: list) -> list:
     '''
@@ -23,7 +23,8 @@ def get_upcoming_birthdays(users: list) -> list:
             days_to_user_congrats = days_to_user_birthday_this_year
         # Відбираємо тих, чий день народження відбувається протягом наступного тижня
         if days_to_user_birthday_this_year < 7:
-            user_congrats_day = user_birthday_this_year.replace(day = today.day + days_to_user_congrats)
+            # Попередня версія додавала лише дні до днів, тим саме не перекидала на наступний місяць
+            user_congrats_day = today + timedelta(days = days_to_user_congrats)
             user_congrats_day = user_congrats_day.strftime("%Y.%m.%d")
             congrats_list.append({"name": user["name"], "congratulation_date": user_congrats_day})
         
@@ -34,10 +35,10 @@ def get_upcoming_birthdays(users: list) -> list:
 
 
 users = [
-    {"name": "John Doe", "birthday": "1985.01.23"},
-    {"name": "Jane Smith", "birthday": "1990.01.27"},
-    {"name": "Alexander", "birthday": "1985.03.10"},
-    {"name": "Artur", "birthday": "1990.03.09"},
-    {"name": "Igor", "birthday": "1990.03.15"},
+    {"name": "John Doe", "birthday": "1985.03.23"},
+    {"name": "Jane Smith", "birthday": "1990.03.30"},
+    {"name": "Alexander", "birthday": "1985.05.10"},
+    {"name": "Artur", "birthday": "1990.04.04"},
+    {"name": "Igor", "birthday": "1990.04.02"},
 ]
 print(get_upcoming_birthdays(users))
